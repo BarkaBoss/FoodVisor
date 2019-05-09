@@ -1,0 +1,85 @@
+{
+  "project_info": {
+    "project_number": "904875198282",
+    "firebase_url": "https://eat-healthy.firebaseio.com",
+    "project_id": "eat-healthy",
+    "storage_bucket": "eat-healthy.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:904875198282:android:fabf097d4ffe3a3e",
+        "android_client_info": {
+          "package_name": "xyz.nokt.btf.eathealthy"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "904875198282-14ppebld0l3dosttkiai5s25i4a617g7.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "xyz.nokt.btf.eathealthy",
+            "certificate_hash": "1740681cedbe501c8a5e039b8c71e27efb719ef0"
+          }
+        },
+        {
+          "client_id": "904875198282-q7s72unh61smv1a44sccrmrvihh36pu6.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDSiqUNVDuvaDKzc_dMjM0AqbsAaF2ftQU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "904875198282-q7s72unh61smv1a44sccrmrvihh36pu6.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:904875198282:android:73fe585094ca33ad",
+        "android_client_info": {
+          "package_name": "xyz.nokt.btf.foodadvisor"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "904875198282-p8r2i32d0hnjnvn9qa49a50nh9fstbi1.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "xyz.nokt.btf.foodadvisor",
+            "certificate_hash": "1740681cedbe501c8a5e039b8c71e27efb719ef0"
+          }
+        },
+        {
+          "client_id": "904875198282-q7s72unh61smv1a44sccrmrvihh36pu6.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDSiqUNVDuvaDKzc_dMjM0AqbsAaF2ftQU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "904875198282-q7s72unh61smv1a44sccrmrvihh36pu6.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

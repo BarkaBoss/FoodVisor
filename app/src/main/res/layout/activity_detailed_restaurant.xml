@@ -61,6 +61,14 @@
                     android:textSize="18sp"
                     android:text="Johnny Rockets"
                     />
+                    <TextView
+                        android:id="@+id/restCallin"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:textSize="18sp"
+                        android:textColor="@color/colorPrimary"
+                        android:text="Call Restaurants"
+                        />
                 </LinearLayout>
         </android.support.v7.widget.CardView>
     </LinearLayout>

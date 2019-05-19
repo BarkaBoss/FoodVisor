@@ -1,15 +1,18 @@
 package xyz.nokt.btf.foodadvisor;
 
 import android.Manifest;
+import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.location.Location;
+import android.net.Uri;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.FragmentActivity;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -28,7 +31,7 @@ public class DetailedRestaurantActivity extends FragmentActivity implements OnMa
 
     private GoogleMap mMap;
 
-    TextView restName, restPhone, restAddress;
+    TextView restName, restPhone, restAddress, restCallin;
     ImageView banner;
 
     String address;
@@ -40,6 +43,7 @@ public class DetailedRestaurantActivity extends FragmentActivity implements OnMa
         restName = findViewById(R.id.restName);
         restPhone = findViewById(R.id.restPhone);
         restAddress = findViewById(R.id.restAddress);
+        restCallin = findViewById(R.id.restCallin);
         banner = findViewById(R.id.bBanner);
 
         Picasso.get().load(getIntent()
@@ -51,6 +55,20 @@ public class DetailedRestaurantActivity extends FragmentActivity implements OnMa
 
 
         address = getIntent().getStringExtra("restAddress");
+
+        restCallin.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (ActivityCompat.checkSelfPermission(getApplicationContext(), Manifest.permission.CALL_PHONE) != PackageManager.PERMISSION_GRANTED) {
+                    ActivityCompat.requestPermissions(DetailedRestaurantActivity.this, new String[]{Manifest.permission.CALL_PHONE}, 104);
+                }
+                if (ActivityCompat.checkSelfPermission(getApplicationContext(), Manifest.permission.CALL_PHONE) == PackageManager.PERMISSION_GRANTED) {
+                    Intent callRest = new Intent(Intent.ACTION_CALL);
+                    callRest.setData(Uri.parse("tel:"+getIntent().getStringExtra("phone")));
+                    startActivity(callRest);
+                }
+            }
+        });
         // Obtain the SupportMapFragment and get notified when the map is ready to be used.
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
                 .findFragmentById(R.id.map);

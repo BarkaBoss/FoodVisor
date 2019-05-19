@@ -2,6 +2,7 @@ package xyz.nokt.btf.foodadvisor;
 
 import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -53,6 +54,18 @@ public class RestaurantListAdapter extends RecyclerView.Adapter<RestaurantListAd
         holder.tvRestName.setText(restaurantObj.getRest_name());
 
         Picasso.get().load(restaurantObj.rest_imgUrl).into(holder.restBanner);
+
+        holder.rel.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent goMapsIntent = new Intent(activity, DetailedRestaurantActivity.class);
+                goMapsIntent.putExtra("phone", restaurantObj.getRest_phone());
+                goMapsIntent.putExtra("restName", restaurantObj.getRest_name());
+                goMapsIntent.putExtra("restAddress", restaurantObj.getRest_address());
+
+                context.startActivity(goMapsIntent);
+            }
+        });
     }
 
     @Override

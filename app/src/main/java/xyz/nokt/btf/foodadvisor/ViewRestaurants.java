@@ -27,7 +27,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 
-public class ViewRestaurants extends Fragment implements SearchView.OnQueryTextListener{
+public class ViewRestaurants extends Fragment implements SearchView.OnQueryTextListener, MenuItem.OnActionExpandListener{
 
     //Declare in initialize FirebaseDatabase so we can view
     //save data
@@ -85,6 +85,7 @@ public class ViewRestaurants extends Fragment implements SearchView.OnQueryTextL
 
         // we then load the restaurants via the loadRests() method
         loadRests();
+        setHasOptionsMenu(true);
         return rootView;
     }
 
@@ -151,12 +152,13 @@ public class ViewRestaurants extends Fragment implements SearchView.OnQueryTextL
         return false;
     }
 
+    ArrayList<RestaurantObj> newlist;
     //Perform search function
     @Override
     public boolean onQueryTextChange(String newText) {
 
         newText=newText.toLowerCase();
-        ArrayList<RestaurantObj> newlist=new ArrayList<>();
+        newlist=new ArrayList<>();
         //Check through the list of restaurants if any one has
         //the searched term
         for(RestaurantObj itms:restaurantObjs)
@@ -176,10 +178,21 @@ public class ViewRestaurants extends Fragment implements SearchView.OnQueryTextL
 
     @Override
     public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
-        inflater.inflate(R.menu.menu, menu);
+        inflater.inflate(R.menu.main, menu);
         MenuItem menuItem=menu.findItem(R.id.actionsearch);
         SearchView searchView=(SearchView) MenuItemCompat.getActionView(menuItem);
         searchView.setOnQueryTextListener(this);
+    }
+
+    @Override
+    public boolean onMenuItemActionExpand(MenuItem menuItem) {
+        return true;
+    }
+
+    @Override
+    public boolean onMenuItemActionCollapse(MenuItem menuItem) {
+        restaurantListAdapter.filter(newlist);
+        return true;
     }
 
     public interface OnFragmentInteractionListener {

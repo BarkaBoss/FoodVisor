@@ -79,7 +79,7 @@ public class Login extends AppCompatActivity {
                                         "Password Reset Sent",
                                         Toast.LENGTH_LONG).show();
                             } else {
-                                edEmail.setError("Make sure the email is correct");
+                                edEmail.setError("Make sure the email provided is correct");
                                 edEmail.requestFocus();
                             }
                         }

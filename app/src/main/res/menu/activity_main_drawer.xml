@@ -19,7 +19,7 @@
             <item
                 android:id="@+id/op_settings"
                 android:icon="@drawable/ic_menu_manage"
-                android:title="Sign Out" />
+                android:title="Change Dietary setting" />
             <item
                 android:id="@+id/signOut"
                 android:icon="@drawable/ic_menu_send"

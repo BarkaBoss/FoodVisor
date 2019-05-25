@@ -5,10 +5,26 @@
     android:layout_height="match_parent"
     tools:context=".Settings">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
+    <LinearLayout
+        android:layout_margin="20dp"
+        android:gravity="center"
+        android:orientation="vertical"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+        android:layout_height="match_parent">
+        <EditText
+            android:id="@+id/edDietaryChoice"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Enter a dietary choice"/>
+        <Button
+            android:id="@+id/btnChangeDiet"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@color/colorAccent"
+            android:textColor="#FFF"
+            android:padding="10dp"
+            android:text="Change Dietary Choice"/>
+    </LinearLayout>
+
 
 </FrameLayout>

@@ -44,31 +44,58 @@
                     android:id="@+id/restName"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:textSize="18sp"
+                    android:drawableLeft="@drawable/ic_store_mall_directory_black_24dp"
+                    android:drawablePadding="10dp"
+                    android:textSize="12sp"
                     android:text="Johnny Rockets"
                     />
                 <TextView
                     android:id="@+id/restPhone"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:textSize="18sp"
+                    android:drawableLeft="@drawable/ic_phone_android_black_24dp"
+                    android:drawablePadding="10dp"
+                    android:textSize="12sp"
                     android:text="Johnny Rockets"
                     />
                 <TextView
                     android:id="@+id/restAddress"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:textSize="18sp"
+                    android:textSize="12sp"
+                    android:drawableLeft="@drawable/ic_home_black_24dp"
+                    android:drawablePadding="10dp"
                     android:text="Johnny Rockets"
                     />
+                    <TextView
+                        android:id="@+id/restFeat"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:textSize="12sp"
+                        android:drawableLeft="@drawable/ic_ac_unit_black_24dp"
+                        android:drawablePadding="10dp"
+                        android:text="Call Restaurants"
+                        />
+                    <TextView
+                        android:id="@+id/restMail"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:textSize="12sp"
+                        android:drawableLeft="@drawable/ic_contact_mail_black_24dp"
+                        android:drawablePadding="10dp"
+                        android:text="Call Restaurants"
+                        />
                     <TextView
                         android:id="@+id/restCallin"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:textSize="18sp"
+                        android:textSize="12sp"
                         android:textColor="@color/colorPrimary"
+                        android:drawableLeft="@drawable/ic_call_black_24dp"
+                        android:drawablePadding="10dp"
                         android:text="Call Restaurants"
                         />
+
                 </LinearLayout>
         </android.support.v7.widget.CardView>
     </LinearLayout>

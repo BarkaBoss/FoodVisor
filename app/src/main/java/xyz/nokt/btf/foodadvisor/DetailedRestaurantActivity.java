@@ -52,7 +52,7 @@ public class DetailedRestaurantActivity extends FragmentActivity implements OnMa
 
     private GoogleMap mMap;
 
-    TextView restName, restPhone, restAddress, restCallin;
+    TextView restName, restPhone, restAddress, restCallin, restMail, restFeat;
     ImageView banner;
     LatLng userLoc, restLoc;
 
@@ -67,6 +67,8 @@ public class DetailedRestaurantActivity extends FragmentActivity implements OnMa
         restAddress = findViewById(R.id.restAddress);
         restCallin = findViewById(R.id.restCallin);
         banner = findViewById(R.id.bBanner);
+        restMail = findViewById(R.id.restMail);
+        restFeat = findViewById(R.id.restFeat);
 
         Picasso.get().load(getIntent()
         .getStringExtra("imageBanner")).into(banner);
@@ -74,6 +76,8 @@ public class DetailedRestaurantActivity extends FragmentActivity implements OnMa
         restPhone.setText(getIntent().getStringExtra("phone"));
         restName.setText(getIntent().getStringExtra("restName"));
         restAddress.setText(getIntent().getStringExtra("restAddress"));
+        restMail.setText(getIntent().getStringExtra("mail"));
+        restFeat.setText(getIntent().getStringExtra("feat"));
 
 
         address = getIntent().getStringExtra("restAddress");

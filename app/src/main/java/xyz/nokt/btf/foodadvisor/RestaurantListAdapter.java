@@ -92,6 +92,8 @@ public class RestaurantListAdapter extends RecyclerView.Adapter<RestaurantListAd
                 goMapsIntent.putExtra("restName", restaurantObj.getRest_name());
                 goMapsIntent.putExtra("restAddress", restaurantObj.getRest_address());
                 goMapsIntent.putExtra("imageBanner", restaurantObj.getRest_imgUrl());
+                goMapsIntent.putExtra("feat", restaurantObj.getRest_features());
+                goMapsIntent.putExtra("mail", restaurantObj.getRest_mail());
 
                 context.startActivity(goMapsIntent);
             }

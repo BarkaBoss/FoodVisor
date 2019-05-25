@@ -172,6 +172,12 @@ public class ViewRestaurants extends Fragment implements SearchView.OnQueryTextL
     }
 
     @Override
+    public void onResume() {
+        super.onResume();
+        getActivity().setTitle("List of Restaurants");
+    }
+
+    @Override
     public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
         inflater.inflate(R.menu.main, menu);
         MenuItem menuItem=menu.findItem(R.id.actionsearch);

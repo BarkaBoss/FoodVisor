@@ -97,6 +97,12 @@ public class AutoRecommendedRestaurant extends Fragment implements SearchView.On
         return rootView;
     }
 
+    @Override
+    public void onResume() {
+        super.onResume();
+        getActivity().setTitle("Diet Recommended Restaurants");
+    }
+
     public void flexTree(String diet)
     {
         newlist = new ArrayList<>();

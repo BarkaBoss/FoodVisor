@@ -53,12 +53,6 @@ public class ViewRestaurants extends Fragment implements SearchView.OnQueryTextL
         // Required empty public constructor
     }
 
-    public static ViewRestaurants newInstance(String param1, String param2) {
-        ViewRestaurants fragment = new ViewRestaurants();
-        Bundle args = new Bundle();
-        return fragment;
-    }
-
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

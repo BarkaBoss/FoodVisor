@@ -17,6 +17,10 @@
     <item android:title="Actions">
         <menu>
             <item
+                android:id="@+id/op_settings"
+                android:icon="@drawable/ic_menu_manage"
+                android:title="Sign Out" />
+            <item
                 android:id="@+id/signOut"
                 android:icon="@drawable/ic_menu_send"
                 android:title="Sign Out" />

@@ -4,7 +4,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="wrap_content">
 
 <android.support.v7.widget.CardView
     android:layout_margin="10dp"
@@ -49,6 +49,15 @@
             android:layout_below="@id/tvRestPhone"
             android:drawablePadding="10dp"
             android:drawableLeft="@drawable/ic_home_black_24dp"
+            android:text="Address" />
+        <TextView
+            android:id="@+id/tvDietFeat"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/tvRestAddress"
+            android:layout_toRightOf="@id/restImg"
+            android:drawablePadding="10dp"
+            android:drawableLeft="@drawable/ic_ac_unit_black_24dp"
             android:text="Address" />
     </RelativeLayout>
 </android.support.v7.widget.CardView>

@@ -15,6 +15,7 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
@@ -31,7 +32,10 @@ public class AutoRecommendedRestaurant extends Fragment implements SearchView.On
 
     FirebaseDatabase database = FirebaseDatabase.getInstance();
     DatabaseReference dbRef = database.getReference("Restaurants");
-    FirebaseAuth fireAuth;
+    DatabaseReference userRef = database.getReference("User");
+    FirebaseAuth fireAuth = FirebaseAuth.getInstance();
+
+    String cusDiet;
 
     List<RestaurantObj> restaurantObjs;
     ArrayList<RestaurantObj> newlist;
@@ -39,6 +43,8 @@ public class AutoRecommendedRestaurant extends Fragment implements SearchView.On
     RecyclerView recyclerView;
     private RestaurantListAdapter restaurantListAdapter;
     String dietary;
+
+    TextView dietChoice;
 
     private ViewRestaurants.OnFragmentInteractionListener mListener;
 
@@ -65,15 +71,28 @@ public class AutoRecommendedRestaurant extends Fragment implements SearchView.On
         // Inflate the layout for this fragment
         View rootView = inflater.inflate(R.layout.fragment_view_restaurants, container, false);
 
+        dietChoice = rootView.findViewById(R.id.tvDiet);
         restaurantObjs = new ArrayList<>();
         fireAuth = FirebaseAuth.getInstance();
         recyclerView = rootView.findViewById(R.id.recycle_rests_list);
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
 
-        dietary = getActivity().getIntent().getStringExtra("dietNeeds");
+        //dietary = getActivity().getIntent().getStringExtra("dietNeeds");
+        userRef.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                cusDiet = dataSnapshot.child(fireAuth.getCurrentUser().getUid()).child("cusDiet").getValue().toString();
+                Log.i("CusDiet", cusDiet);
+                dietChoice.setText("Recommendations based on "+ cusDiet);
+                loadRests();
+            }
 
-        loadRests();
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
 
         return rootView;
     }
@@ -125,7 +144,7 @@ public class AutoRecommendedRestaurant extends Fragment implements SearchView.On
                     }
                 }
                 RestaurantListAdapter restAdapter = new RestaurantListAdapter(getActivity(), getContext(), restaurantObjs);
-                restAdapter.getFilter().filter(dietary);
+                restAdapter.getFilter().filter(cusDiet);
                 recyclerView.setAdapter(restAdapter);
 
                 /*if(restaurantObjs != null)

@@ -7,6 +7,7 @@ import android.graphics.Bitmap;
 import android.graphics.drawable.Drawable;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -32,12 +33,6 @@ public class RestaurantListAdapter extends RecyclerView.Adapter<RestaurantListAd
     private Activity activity;
     private List<RestaurantObj> restLists;
     private Context context;
-    RestaurantObj restaurantObj;
-    Bitmap mBitmap;
-
-    FirebaseDatabase fireDatabase = FirebaseDatabase.getInstance();
-    FirebaseAuth firebaseAuth = FirebaseAuth.getInstance();
-    DatabaseReference dbRef = fireDatabase.getReference("restaurants");
 
     public RestaurantListAdapter(Activity activity, Context context, List<RestaurantObj> restLists)
     {
@@ -61,8 +56,10 @@ public class RestaurantListAdapter extends RecyclerView.Adapter<RestaurantListAd
         holder.tvRestPhone.setText(restaurantObj.getRest_phone());
         holder.tvRestAddress.setText(restaurantObj.getRest_address());
         holder.tvRestName.setText(restaurantObj.getRest_name());
+        holder.tvDietary.setText(restaurantObj.getRest_features());
 
-        Picasso.get().load(restaurantObj.rest_imgUrl).into(holder.restBanner);
+        Picasso.get().load(restaurantObj.getRest_imgUrl()).into(holder.restBanner);
+        Log.i("Image URL", restaurantObj.getRest_imgUrl());
 
         /*Picasso.get().load(restaurantObj.rest_imgUrl)
                 .into(new Target() {
@@ -151,7 +148,7 @@ public class RestaurantListAdapter extends RecyclerView.Adapter<RestaurantListAd
     public class ViewHolder extends RecyclerView.ViewHolder {
 
         RelativeLayout rel;
-        TextView tvRestName, tvRestPhone, tvRestAddress;
+        TextView tvRestName, tvRestPhone, tvRestAddress, tvDietary;
         ImageView restBanner;
         public ViewHolder(View itemView) {
             super(itemView);
@@ -161,6 +158,7 @@ public class RestaurantListAdapter extends RecyclerView.Adapter<RestaurantListAd
             tvRestAddress = itemView.findViewById(R.id.tvRestAddress);
             tvRestPhone = itemView.findViewById(R.id.tvRestPhone);
             restBanner = itemView.findViewById(R.id.restImg);
+            tvDietary = itemView.findViewById(R.id.tvDietFeat);
         }
     }
 }

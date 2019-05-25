@@ -23,7 +23,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class MainActivity extends AppCompatActivity
-        implements NavigationView.OnNavigationItemSelectedListener, ViewRestaurants.OnFragmentInteractionListener{
+        implements NavigationView.OnNavigationItemSelectedListener, ViewRestaurants.OnFragmentInteractionListener, Settings.OnFragmentInteractionListener{
 
     List<RestaurantObj> restaurantObjs;
     private RestaurantListAdapter restaurantListAdapter;
@@ -98,7 +98,13 @@ public class MainActivity extends AppCompatActivity
             ft = getSupportFragmentManager().beginTransaction();
             ft.replace(R.id.frag_main, new AutoRecommendedRestaurant());
             ft.commit();
-        }  else if (id == R.id.signOut) {
+        }else if(id == R.id.op_settings)
+        {
+            ft = getSupportFragmentManager().beginTransaction();
+            ft.replace(R.id.frag_main, new Settings());
+            ft.commit();
+        }
+        else if (id == R.id.signOut) {
             fbAuth.signOut();
             startActivity(new Intent(MainActivity.this, Login.class));
             finish();

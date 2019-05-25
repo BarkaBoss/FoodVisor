@@ -29,7 +29,8 @@
             android:layout_height="wrap_content"
             android:layout_toRightOf="@id/restImg"
             android:textSize="18sp"
-            android:drawableLeft="@drawable/ic_menu_slideshow"
+            android:drawableLeft="@drawable/ic_store_mall_directory_black_24dp"
+            android:drawablePadding="10dp"
             android:text="Name of Rest" />
         <TextView
             android:id="@+id/tvRestPhone"
@@ -37,7 +38,8 @@
             android:layout_height="wrap_content"
             android:layout_toRightOf="@id/restImg"
             android:layout_below="@id/tvRestName"
-            android:drawableLeft="@drawable/ic_menu_send"
+            android:drawablePadding="10dp"
+            android:drawableLeft="@drawable/ic_phone_android_black_24dp"
             android:text="Phone Number" />
         <TextView
             android:id="@+id/tvRestAddress"
@@ -45,7 +47,8 @@
             android:layout_height="wrap_content"
             android:layout_toRightOf="@id/restImg"
             android:layout_below="@id/tvRestPhone"
-            android:drawableLeft="@drawable/ic_menu_manage"
+            android:drawablePadding="10dp"
+            android:drawableLeft="@drawable/ic_home_black_24dp"
             android:text="Address" />
     </RelativeLayout>
 </android.support.v7.widget.CardView>

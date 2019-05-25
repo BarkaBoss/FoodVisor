@@ -2,17 +2,26 @@ package xyz.nokt.btf.foodadvisor;
 
 public class Users {
     public String email, password, phoneNumber, firstName, lastName,
-                    role, zone;
+                    role, zone, cusDiet;
 
     public Users() {
     }
 
-    public Users(String email, String phoneNumber, String firstName, String lastName, String role) {
+    public Users(String email, String phoneNumber, String firstName, String lastName, String role, String cusDiet) {
         this.email = email;
         this.phoneNumber = phoneNumber;
         this.firstName = firstName;
         this.lastName = lastName;
         this.role = role;
+        this.cusDiet = cusDiet;
+    }
+
+    public String getCusDiet() {
+        return cusDiet;
+    }
+
+    public void setCusDiet(String cusDiet) {
+        this.cusDiet = cusDiet;
     }
 
     public String getEmail() {

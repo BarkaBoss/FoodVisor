@@ -15,6 +15,7 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
@@ -33,8 +34,11 @@ public class AutoRecommendedRestaurant extends Fragment implements SearchView.On
     FirebaseAuth fireAuth;
 
     List<RestaurantObj> restaurantObjs;
+    ArrayList<RestaurantObj> newlist;
+
     RecyclerView recyclerView;
     private RestaurantListAdapter restaurantListAdapter;
+    String dietary;
 
     private ViewRestaurants.OnFragmentInteractionListener mListener;
 
@@ -67,8 +71,39 @@ public class AutoRecommendedRestaurant extends Fragment implements SearchView.On
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
 
+        dietary = getActivity().getIntent().getStringExtra("dietNeeds");
+
         loadRests();
+
         return rootView;
+    }
+
+    public void flexTree(String diet)
+    {
+        newlist = new ArrayList<>();
+        diet=diet.toLowerCase();
+        //Check through the list of restaurants if any one has
+        //the searched term
+        for(RestaurantObj itms:restaurantObjs)
+        {
+            String getSearchedIems=itms.getRest_features().toLowerCase();
+
+            String getName = itms.getRest_name().toLowerCase();
+
+            if(getSearchedIems.contains(diet) || getName.contains(diet)){
+                newlist.add(itms);
+            }
+        }
+        //If there is a match the adapter is updated with the
+        //holding just those items
+        if(newlist.size() > 1) {
+            restaurantListAdapter.filter(newlist);
+            Toast.makeText(getContext(), " not empty", Toast.LENGTH_SHORT).show();
+        }
+        else
+        {
+            Toast.makeText(getContext(), " It is empty", Toast.LENGTH_SHORT).show();
+        }
     }
 
     public void loadRests()
@@ -90,7 +125,13 @@ public class AutoRecommendedRestaurant extends Fragment implements SearchView.On
                     }
                 }
                 RestaurantListAdapter restAdapter = new RestaurantListAdapter(getActivity(), getContext(), restaurantObjs);
+                restAdapter.getFilter().filter(dietary);
                 recyclerView.setAdapter(restAdapter);
+
+                /*if(restaurantObjs != null)
+                {
+                    flexTree("diabetes");
+                }*/
             }
 
             @Override
@@ -130,7 +171,7 @@ public class AutoRecommendedRestaurant extends Fragment implements SearchView.On
 
     @Override
     public boolean onQueryTextChange(String newText) {
-        newText=newText.toLowerCase();
+        newText="xcz";
         ArrayList<RestaurantObj> newlist=new ArrayList<>();
         for(RestaurantObj itms:restaurantObjs)
         {

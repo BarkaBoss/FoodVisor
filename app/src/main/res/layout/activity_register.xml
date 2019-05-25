@@ -57,6 +57,11 @@
                     android:inputType="number"
                     android:hint="Phone number"/>
                     />
+                <EditText
+                    android:id="@+id/cusDiet"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Dietary Needs"/>
                 <Button
                     android:id="@+id/btnRegister"
                     android:layout_margin="10dp"

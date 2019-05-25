@@ -10,6 +10,8 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Filter;
+import android.widget.Filterable;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
@@ -25,11 +27,12 @@ import java.io.ByteArrayOutputStream;
 import java.util.ArrayList;
 import java.util.List;
 
-public class RestaurantListAdapter extends RecyclerView.Adapter<RestaurantListAdapter.ViewHolder>{
+public class RestaurantListAdapter extends RecyclerView.Adapter<RestaurantListAdapter.ViewHolder> implements Filterable{
 
     private Activity activity;
     private List<RestaurantObj> restLists;
     private Context context;
+    RestaurantObj restaurantObj;
     Bitmap mBitmap;
 
     FirebaseDatabase fireDatabase = FirebaseDatabase.getInstance();
@@ -108,6 +111,41 @@ public class RestaurantListAdapter extends RecyclerView.Adapter<RestaurantListAd
         restLists = new ArrayList<>();
         restLists.addAll(listItem);
         notifyDataSetChanged();
+    }
+
+    @Override
+    public Filter getFilter() {
+        return new Filter() {
+            @Override
+            protected FilterResults performFiltering(CharSequence charSequence) {
+                String charString = charSequence.toString();
+                if (charString.isEmpty()) {
+                    restLists = restLists;
+                } else {
+                    List<RestaurantObj> filteredList = new ArrayList<>();
+                    for (RestaurantObj row : restLists) {
+
+                        // name match condition. this might differ depending on your requirement
+                        // here we are looking for name or phone number match
+                        if (row.getRest_features().toLowerCase().contains(charString.toLowerCase()) || row.getRest_feat_sitInOut().contains(charSequence)) {
+                            filteredList.add(row);
+                        }
+                    }
+
+                    restLists = filteredList;
+                }
+
+                FilterResults filterResults = new FilterResults();
+                filterResults.values = restLists;
+                return filterResults;
+            }
+
+            @Override
+            protected void publishResults(CharSequence charSequence, FilterResults filterResults) {
+                restLists = (ArrayList<RestaurantObj>) filterResults.values;
+                notifyDataSetChanged();
+            }
+        };
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {

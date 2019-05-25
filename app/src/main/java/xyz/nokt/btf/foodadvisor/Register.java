@@ -25,11 +25,11 @@ import com.google.firebase.database.ValueEventListener;
 public class Register extends AppCompatActivity {
 
     //Declare UI elements
-    EditText edEmail, edPassword, edPhone, edFirstName, edLastName;
+    EditText edEmail, edPassword, edPhone, edFirstName, edLastName, edCusDiet;
     Button btnSignUp;
 
     //Declare string data for login data to be passed to next activity
-    String userRole, email, phoneNumber, firstName, lastName;
+    String userRole, email, phoneNumber, firstName, lastName, customerNeeds;
 
     //Declare and initialize String keys to make reference for data in new activity
     final String addUserRole = "role";
@@ -37,6 +37,7 @@ public class Register extends AppCompatActivity {
     final String uNumber = "phone";
     final String uFirstName = "firstName";
     final String uLastName = "lastName";
+    final String cusDiet = "dietNeeds";
 
     //Declare firebase authentication
     FirebaseAuth fbAuth;
@@ -62,6 +63,7 @@ public class Register extends AppCompatActivity {
         edPhone = findViewById(R.id.edPhoneNumber);
         edFirstName = findViewById(R.id.edFirstName);
         edLastName = findViewById(R.id.edLastName);
+        edCusDiet = findViewById(R.id.cusDiet);
 
         pgRBar = findViewById(R.id.regProgressBar);
         pgRBar.setVisibility(View.GONE);
@@ -103,6 +105,8 @@ public class Register extends AppCompatActivity {
                             phoneNumber = dataSnapshot.child("phoneNumber").getValue().toString().trim();
                             firstName = dataSnapshot.child("firstName").getValue().toString().trim();
                             lastName = dataSnapshot.child("lastName").getValue().toString().trim();
+                            customerNeeds = dataSnapshot.child("cusDiet").getValue().toString().trim();
+
 
 
                             //An intent is to the home page is created and
@@ -115,6 +119,7 @@ public class Register extends AppCompatActivity {
                             customerIntent.putExtra(uLastName, lastName);
                             customerIntent.putExtra(addUserRole, userRole);
                             customerIntent.putExtra("uid", fbUser);
+                            customerIntent.putExtra(cusDiet, customerNeeds);
                             Log.i("User Role", userRole);
                             //We load the activity if the user role is customer
                             if(userRole.equals("customer"))
@@ -144,6 +149,7 @@ public class Register extends AppCompatActivity {
         final String strPhone = edPhone.getText().toString().trim();
         final String strFirstName = edFirstName.getText().toString().trim();
         final String strLastName = edLastName.getText().toString().trim();
+        final String dietNeeds = edCusDiet.getText().toString().trim();
         final String strRole = "customer";
 
         //Start check
@@ -157,6 +163,12 @@ public class Register extends AppCompatActivity {
         if (strLastName.isEmpty()) {
             edLastName.setError("Enter your Last Name");
             edLastName.requestFocus();
+            return;
+        }
+
+        if (dietNeeds.isEmpty()) {
+            edCusDiet.setError("Enter your Dietary Needs");
+            edCusDiet.requestFocus();
             return;
         }
 
@@ -206,7 +218,8 @@ public class Register extends AppCompatActivity {
                                     strPhone,
                                     strFirstName,
                                     strLastName,
-                                    strRole
+                                    strRole,
+                                    dietNeeds
                             );
 
                             //We the set the value of our current user to the "users object"

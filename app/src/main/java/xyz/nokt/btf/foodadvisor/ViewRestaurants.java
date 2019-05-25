@@ -165,8 +165,9 @@ public class ViewRestaurants extends Fragment implements SearchView.OnQueryTextL
         {
             String getSearchedIems=itms.getRest_features().toLowerCase();
             String getName = itms.getRest_name().toLowerCase();
+            String getAddress = itms.getRest_address().toLowerCase();
 
-            if(getSearchedIems.contains(newText) || getName.contains(newText)){
+            if(getSearchedIems.contains(newText) || getName.contains(newText) || getAddress.contains(newText)){
                 newlist.add(itms);
             }
         }

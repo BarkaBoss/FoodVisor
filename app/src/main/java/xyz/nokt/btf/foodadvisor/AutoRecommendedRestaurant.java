@@ -28,7 +28,7 @@ import com.google.firebase.database.ValueEventListener;
 import java.util.ArrayList;
 import java.util.List;
 
-public class AutoRecommendedRestaurant extends Fragment implements SearchView.OnQueryTextListener{
+public class AutoRecommendedRestaurant extends Fragment implements ViewRestaurants.OnFragmentInteractionListener, SearchView.OnQueryTextListener{
 
     FirebaseDatabase database = FirebaseDatabase.getInstance();
     DatabaseReference dbRef = database.getReference("Restaurants");
@@ -36,6 +36,7 @@ public class AutoRecommendedRestaurant extends Fragment implements SearchView.On
     FirebaseAuth fireAuth = FirebaseAuth.getInstance();
 
     String cusDiet;
+    String param;
 
     List<RestaurantObj> restaurantObjs;
     ArrayList<RestaurantObj> newlist;
@@ -78,13 +79,18 @@ public class AutoRecommendedRestaurant extends Fragment implements SearchView.On
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
 
+        Bundle bundle = getArguments();
+
+        param = bundle.getString("localForeign");
+        dietary = bundle.getString("Diet");
+
         //dietary = getActivity().getIntent().getStringExtra("dietNeeds");
         userRef.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 cusDiet = dataSnapshot.child(fireAuth.getCurrentUser().getUid()).child("cusDiet").getValue().toString();
                 Log.i("CusDiet", cusDiet);
-                dietChoice.setText("Recommendations based on "+ cusDiet);
+                dietChoice.setText("Recommendations based on "+ dietary);
                 loadRests();
             }
 
@@ -100,7 +106,13 @@ public class AutoRecommendedRestaurant extends Fragment implements SearchView.On
     @Override
     public void onResume() {
         super.onResume();
-        getActivity().setTitle("Diet Recommended Restaurants");
+        if (param != null) {
+            getActivity().setTitle(param.toUpperCase() + " Restaurants");
+        }
+        if (dietary != null)
+        {
+            getActivity().setTitle("Recommendeds Restaurants");
+        }
     }
 
     public void flexTree(String diet)
@@ -150,9 +162,19 @@ public class AutoRecommendedRestaurant extends Fragment implements SearchView.On
                     }
                 }
                 RestaurantListAdapter restAdapter = new RestaurantListAdapter(getActivity(), getContext(), restaurantObjs);
-                restAdapter.getFilter().filter(cusDiet);
-                recyclerView.setAdapter(restAdapter);
 
+                if(param == null) {
+                    restAdapter.getFilter().filter(dietary.toLowerCase());
+                    recyclerView.setAdapter(restAdapter);
+                    dietary = null;
+                }else if (dietary == null)
+                {
+                    restAdapter.getFilter().filter(param.toLowerCase());
+                    recyclerView.setAdapter(restAdapter);
+                    param = null;
+                }
+
+                //Log.i("LocFor", param);
                 /*if(restaurantObjs != null)
                 {
                     flexTree("diabetes");
@@ -217,6 +239,11 @@ public class AutoRecommendedRestaurant extends Fragment implements SearchView.On
         MenuItem menuItem=menu.findItem(R.id.actionsearch);
         SearchView searchView=(SearchView) MenuItemCompat.getActionView(menuItem);
         searchView.setOnQueryTextListener(this);
+    }
+
+    @Override
+    public void onFragmentInteraction(Uri uri) {
+
     }
 
     public interface OnFragmentInteractionListener {

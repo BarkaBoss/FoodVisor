@@ -56,7 +56,7 @@ public class DetailedRestaurantActivity extends FragmentActivity implements OnMa
     ImageView banner;
     LatLng userLoc, restLoc;
 
-    String address;
+    String address, restID;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -78,6 +78,7 @@ public class DetailedRestaurantActivity extends FragmentActivity implements OnMa
         restAddress.setText(getIntent().getStringExtra("restAddress"));
         restMail.setText(getIntent().getStringExtra("mail"));
         restFeat.setText(getIntent().getStringExtra("feat"));
+        restID = getIntent().getStringExtra("restID");
 
 
         address = getIntent().getStringExtra("restAddress");

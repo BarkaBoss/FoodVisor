@@ -1,6 +1,10 @@
 package xyz.nokt.btf.foodadvisor;
 
+import android.app.AlertDialog;
+import android.app.FragmentManager;
+import android.app.FragmentTransaction;
 import android.content.Context;
+import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -15,6 +19,8 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.TextView;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
@@ -45,6 +51,7 @@ public class ViewRestaurants extends Fragment implements SearchView.OnQueryTextL
     RecyclerView recyclerView;
     //Declare Our  Restaurant list adapter which holds restaurant list that
     //is passed to the recyclerView
+    Bundle bundle =  new Bundle();
     private RestaurantListAdapter restaurantListAdapter;
 
     private OnFragmentInteractionListener mListener;
@@ -80,7 +87,132 @@ public class ViewRestaurants extends Fragment implements SearchView.OnQueryTextL
         // we then load the restaurants via the loadRests() method
         loadRests();
         setHasOptionsMenu(true);
+        loadDialog();
         return rootView;
+    }
+
+    public void loadDialog()
+    {
+        final AlertDialog.Builder dialogBuilder = new AlertDialog.Builder(getActivity());
+        LayoutInflater inflater = getLayoutInflater();
+        final View dialogView = inflater.inflate(R.layout.dialog_nav, null);
+        dialogBuilder.setView(dialogView);
+        dialogBuilder.setTitle("Food Adivsor");
+        final AlertDialog ab = dialogBuilder.create();
+
+        final TextView tvMessage = dialogView.findViewById(R.id.tvDiagMessage);
+        final Button btnYes = dialogView.findViewById(R.id.btnYes);
+        final Button btnNo = dialogView.findViewById(R.id.btnNo);
+
+        tvMessage.setText("Would you like to search for Restaurants based on your preference?");
+        btnYes.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                loadDietDialog();
+                ab.dismiss();
+            }
+        });
+
+        btnNo.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                ab.dismiss();
+            }
+        });
+
+
+        ab.show();
+    }
+
+    public void loadDietDialog()
+    {
+        final AlertDialog.Builder dialogBuilder = new AlertDialog.Builder(getActivity());
+        LayoutInflater inflater = getLayoutInflater();
+        final View dialogView = inflater.inflate(R.layout.dialog_nav, null);
+        dialogBuilder.setView(dialogView);
+        dialogBuilder.setTitle("Food Adivsor");
+        final AlertDialog ab = dialogBuilder.create();
+
+        final TextView tvMessage = dialogView.findViewById(R.id.tvDiagMessage);
+        final Button btnYes = dialogView.findViewById(R.id.btnYes);
+        final Button btnNo = dialogView.findViewById(R.id.btnNo);
+
+        tvMessage.setText("Search for Restaurants based on Dietary Restrictions?");
+        btnYes.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                bundle.putString("Diet", "Diet");
+
+                android.support.v4.app.FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
+                android.support.v4.app.FragmentTransaction ft = fragmentManager.beginTransaction();
+                AutoRecommendedRestaurant autoRec = new AutoRecommendedRestaurant();
+                autoRec.setArguments(bundle);
+                ft.replace(R.id.frag_main, autoRec)
+                        .commit();
+
+                ab.dismiss();
+            }
+        });
+
+        btnNo.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                loadLocalForeign();
+                ab.dismiss();
+            }
+        });
+        ab.show();
+    }
+
+    public void loadLocalForeign()
+    {
+        final AlertDialog.Builder dialogBuilder = new AlertDialog.Builder(getActivity());
+        LayoutInflater inflater = getLayoutInflater();
+        final View dialogView = inflater.inflate(R.layout.dialog_nav, null);
+        dialogBuilder.setView(dialogView);
+        dialogBuilder.setTitle("Food Adivsor");
+        final AlertDialog ab = dialogBuilder.create();
+
+        final TextView tvMessage = dialogView.findViewById(R.id.tvDiagMessage);
+        final Button btnYes = dialogView.findViewById(R.id.btnYes);
+        final Button btnNo = dialogView.findViewById(R.id.btnNo);
+
+
+        btnYes.setText("Foreign");
+        btnNo.setText("Local");
+
+        tvMessage.setText("Do you want to eat at a Foreign or local Restaurant?");
+
+        btnYes.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                bundle.putString("localForeign", "Foreign");
+
+                android.support.v4.app.FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
+                android.support.v4.app.FragmentTransaction ft = fragmentManager.beginTransaction();
+                AutoRecommendedRestaurant autoRec = new AutoRecommendedRestaurant();
+                autoRec.setArguments(bundle);
+                ft.replace(R.id.frag_main, autoRec)
+                        .commit();
+                ab.dismiss();
+            }
+        });
+
+        btnNo.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                bundle.putString("localForeign", "Local");
+
+                android.support.v4.app.FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
+                android.support.v4.app.FragmentTransaction ft = fragmentManager.beginTransaction();
+                AutoRecommendedRestaurant autoRec = new AutoRecommendedRestaurant();
+                autoRec.setArguments(bundle);
+                ft.replace(R.id.frag_main, autoRec)
+                        .commit();
+                ab.dismiss();
+            }
+        });
+        ab.show();
     }
 
     //load the restaurants

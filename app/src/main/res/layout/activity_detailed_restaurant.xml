@@ -13,7 +13,7 @@
         android:orientation="vertical"
         android:layout_marginLeft="10dp"
         android:layout_marginRight="10dp"
-        android:layout_weight="25"
+        android:layout_weight="20"
         android:layout_height="0dp">
         <ImageView
             android:id="@+id/bBanner"
@@ -26,7 +26,7 @@
     <LinearLayout
         android:orientation="vertical"
         android:layout_width="match_parent"
-        android:layout_weight="25"
+        android:layout_weight="30"
         android:layout_height="0dp">
         <android.support.v7.widget.CardView
             android:layout_marginLeft="10dp"
@@ -35,6 +35,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent">
                 <LinearLayout
+                    android:id="@+id/lvToDoList"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:padding="10dp"
@@ -95,7 +96,14 @@
                         android:drawablePadding="10dp"
                         android:text="Call Restaurants"
                         />
-
+                    <TextView
+                        android:id="@+id/tvRating"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:drawableLeft="@drawable/ic_stars_black_24dp"
+                        android:drawablePadding="10dp"
+                        android:textColor="@color/colorAccent"
+                        android:text="Rate Restaurant"/>
                 </LinearLayout>
         </android.support.v7.widget.CardView>
     </LinearLayout>

@@ -8,18 +8,18 @@
             android:id="@+id/viewRestautants"
             android:icon="@drawable/ic_menu_camera"
             android:title="View Restaurants" />
-        <item
+        <!--item
             android:id="@+id/restRecommendation"
             android:icon="@drawable/ic_menu_gallery"
-            android:title="Get Recommendation" />
+            android:title="Get Recommendation" /-->
     </group>
 
     <item android:title="Actions">
         <menu>
-            <item
+            <!--item
                 android:id="@+id/op_settings"
                 android:icon="@drawable/ic_menu_manage"
-                android:title="Change Dietary setting" />
+                android:title="Change Dietary setting" /-->
             <item
                 android:id="@+id/signOut"
                 android:icon="@drawable/ic_menu_send"

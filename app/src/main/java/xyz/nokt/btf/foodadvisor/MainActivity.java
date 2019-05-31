@@ -93,7 +93,7 @@ public class MainActivity extends AppCompatActivity
             ft = getSupportFragmentManager().beginTransaction();
             ft.replace(R.id.frag_main, new ViewRestaurants());
             ft.commit();
-        } else if (id == R.id.restRecommendation) {
+        } /*else if (id == R.id.restRecommendation) {
             //Toast.makeText(getBaseContext(), "Added Rest", Toast.LENGTH_SHORT).show();
             ft = getSupportFragmentManager().beginTransaction();
             ft.replace(R.id.frag_main, new AutoRecommendedRestaurant());
@@ -103,7 +103,7 @@ public class MainActivity extends AppCompatActivity
             ft = getSupportFragmentManager().beginTransaction();
             ft.replace(R.id.frag_main, new Settings());
             ft.commit();
-        }
+        }*/
         else if (id == R.id.signOut) {
             fbAuth.signOut();
             startActivity(new Intent(MainActivity.this, Login.class));

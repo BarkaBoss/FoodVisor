@@ -14,9 +14,12 @@ import android.location.Location;
 import android.net.Uri;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.FragmentActivity;
 import android.os.Bundle;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -38,8 +41,11 @@ import com.google.android.gms.maps.model.CameraPosition;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.android.gms.maps.model.PolylineOptions;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 import com.google.maps.DirectionsApi;
 import com.google.maps.DirectionsApiRequest;
 import com.google.maps.GeoApiContext;
@@ -59,6 +65,7 @@ public class DetailedRestaurantActivity extends FragmentActivity implements OnMa
     private GoogleMap mMap;
 
     TextView restName, restPhone, restAddress, restCallin, restMail, restFeat, ratings;
+    FloatingActionButton fab;
     ImageView banner;
     LatLng userLoc, restLoc;
     FirebaseDatabase fbDatabase = FirebaseDatabase.getInstance();
@@ -78,6 +85,7 @@ public class DetailedRestaurantActivity extends FragmentActivity implements OnMa
         restMail = findViewById(R.id.restMail);
         restFeat = findViewById(R.id.restFeat);
         ratings = findViewById(R.id.tvRating);
+        fab = findViewById(R.id.fabRate);
 
         Picasso.get().load(getIntent()
         .getStringExtra("imageBanner")).into(banner);
@@ -90,12 +98,21 @@ public class DetailedRestaurantActivity extends FragmentActivity implements OnMa
         restID = getIntent().getStringExtra("restID");
 
 
+
         address = getIntent().getStringExtra("restAddress");
 
-        ratings.setOnClickListener(new View.OnClickListener() {
+        fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 loadDialog();
+            }
+        });
+        ratings.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(DetailedRestaurantActivity.this, Reviews.class);
+                intent.putExtra("restRateID", restID);
+                startActivity(intent);
             }
         });
         restCallin.setOnClickListener(new View.OnClickListener() {
@@ -117,13 +134,14 @@ public class DetailedRestaurantActivity extends FragmentActivity implements OnMa
         mapFragment.getMapAsync(this);
     }
 
+
     public void loadDialog()
     {
         final AlertDialog.Builder dialogBuilder = new AlertDialog.Builder(this);
         LayoutInflater inflater = getLayoutInflater();
         final View dialogView = inflater.inflate(R.layout.ratings, null);
         dialogBuilder.setView(dialogView);
-        dialogBuilder.setTitle("Rate this Restaurant");
+        dialogBuilder.setTitle("Review this Restaurant");
         final AlertDialog ab = dialogBuilder.create();
 
         final EditText tvTitle = dialogView.findViewById(R.id.edRateTitle);
@@ -145,7 +163,7 @@ public class DetailedRestaurantActivity extends FragmentActivity implements OnMa
                 );
                 dbRef.child(restID).child(id).setValue(comments);
 
-                Toast.makeText(getApplicationContext(), "Ratings Recieved", Toast.LENGTH_SHORT).show();
+                Toast.makeText(getApplicationContext(), "Review Recieved", Toast.LENGTH_SHORT).show();
                 ab.dismiss();
             }
         });

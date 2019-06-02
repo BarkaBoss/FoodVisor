@@ -63,7 +63,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textColor="#FFF"
-                    android:text="Northern"
+                    android:text="Northern Restaurants"
                     android:background="@drawable/roundedgebutton"/>
                 <Button
                     android:id="@+id/yoruba"
@@ -71,7 +71,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textColor="#FFF"
-                    android:text="Yoruba"
+                    android:text="Yoruba Restaurants"
                     android:background="@drawable/roundedgebutton"/>
                 <Button
                     android:id="@+id/igbo"
@@ -79,7 +79,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textColor="#FFF"
-                    android:text="Igbo"
+                    android:text="Igbo Restaurants"
                     android:background="@drawable/roundedgebutton"/>
             </LinearLayout>
             <LinearLayout
@@ -96,7 +96,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textColor="#FFF"
-                    android:text="Vegan"
+                    android:text="Vegan Restaurants"
                     android:background="@drawable/roundedgebutton"/>
                 <Button
                     android:id="@+id/halal"
@@ -104,7 +104,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textColor="#FFF"
-                    android:text="Halal"
+                    android:text="Halal Restaurants"
                     android:background="@drawable/roundedgebutton"/>
                 <Button
                     android:id="@+id/gluten"
@@ -112,7 +112,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textColor="#FFF"
-                    android:text="Gluten"
+                    android:text="Gluten Restaurants"
                     android:background="@drawable/roundedgebutton"/>
                 <Button
                     android:id="@+id/diabetes"
@@ -120,7 +120,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textColor="#FFF"
-                    android:text="Diabetes"
+                    android:text="Diabetes Restaurants"
                     android:background="@drawable/roundedgebutton"/>
             </LinearLayout>
             <LinearLayout
@@ -137,7 +137,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textColor="#FFF"
-                    android:text="Chinese"
+                    android:text="Chinese Restaurants"
                     android:background="@drawable/roundedgebutton"/>
                 <Button
                     android:id="@+id/indian"
@@ -145,7 +145,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textColor="#FFF"
-                    android:text="Indian"
+                    android:text="Indian Restaurants"
                     android:background="@drawable/roundedgebutton"/>
                 <Button
                     android:id="@+id/lebanese"
@@ -153,7 +153,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textColor="#FFF"
-                    android:text="Lebanese"
+                    android:text="Lebanese Restaurants"
                     android:background="@drawable/roundedgebutton"/>
                 <Button
                     android:id="@+id/continental"
@@ -161,7 +161,15 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textColor="#FFF"
-                    android:text="Continental"
+                    android:text="Continental Restaurants"
+                    android:background="@drawable/roundedgebutton"/>
+                <Button
+                    android:id="@+id/fastfoof"
+                    android:layout_margin="10dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="#FFF"
+                    android:text="Fast Food Restaurants"
                     android:background="@drawable/roundedgebutton"/>
             </LinearLayout>
         </LinearLayout>

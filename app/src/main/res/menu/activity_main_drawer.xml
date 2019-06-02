@@ -21,6 +21,10 @@
                 android:icon="@drawable/ic_menu_manage"
                 android:title="Change Dietary setting" /-->
             <item
+                android:id="@+id/op_add_rest"
+                android:icon="@drawable/ic_menu_manage"
+                android:title="Add Restaurant"/>
+            <item
                 android:id="@+id/signOut"
                 android:icon="@drawable/ic_menu_send"
                 android:title="Sign Out" />

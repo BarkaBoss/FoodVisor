@@ -1,13 +1,24 @@
 <resources>
-    <string name="app_name">Food Advisor</string>
+    <string name="app_name">Restaurant Advisor</string>
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
-    <string name="nav_header_title">Food Advisor</string>
-    <string name="nav_header_subtitle">food.advisor@restaurant.com</string>
+    <string name="nav_header_title">Restaurant Advisor</string>
+    <string name="nav_header_subtitle">restaurant.advisor@restaurant.com</string>
     <string name="nav_header_desc">Navigation header</string>
     <string name="action_settings">Settings</string>
     <string name="title_activity_detailed_restaurant">Map</string>
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string-array name="locCont">
+        <item>Local</item>
+        <item> Continental</item>
+        <item>Local and Continental</item>
+    </string-array>
+    <string-array name="sitting">
+        <item>Sit in</item>
+        <item>Takeout</item>
+        <item>Reservations</item>
+        <item>Sit in and Takeout</item>
+    </string-array>
 </resources>

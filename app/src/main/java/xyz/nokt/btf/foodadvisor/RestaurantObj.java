@@ -2,7 +2,7 @@ package xyz.nokt.btf.foodadvisor;
 
 public class RestaurantObj {
 
-    String rest_name, rest_id, rest_mail, rest_phone, rest_address, rest_imgUrl, rest_features, rest_feat_loccont, rest_feat_sitInOut;
+    String rest_name, rest_id, rest_mail, rest_phone, rest_address, rest_imgUrl, rest_features, rest_feat_loccont, rest_feat_sitInOut, rest_CAC_Cert;
 
     public RestaurantObj()
     {}
@@ -17,6 +17,19 @@ public class RestaurantObj {
         this.rest_features = rest_features;
         this.rest_feat_loccont = rest_feat_loccont;
         this.rest_feat_sitInOut = rest_feat_sitInOut;
+    }
+
+    public RestaurantObj(String rest_name, String rest_id, String rest_mail, String rest_phone, String rest_address, String rest_imgUrl, String rest_features, String rest_feat_loccont, String rest_feat_sitInOut, String rest_CAC_Cert) {
+        this.rest_name = rest_name;
+        this.rest_id = rest_id;
+        this.rest_mail = rest_mail;
+        this.rest_phone = rest_phone;
+        this.rest_address = rest_address;
+        this.rest_imgUrl = rest_imgUrl;
+        this.rest_features = rest_features;
+        this.rest_feat_loccont = rest_feat_loccont;
+        this.rest_feat_sitInOut = rest_feat_sitInOut;
+        this.rest_CAC_Cert = rest_CAC_Cert;
     }
 
     public String getRest_feat_loccont() {

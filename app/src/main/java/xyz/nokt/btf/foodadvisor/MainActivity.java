@@ -22,8 +22,10 @@ import com.google.firebase.auth.FirebaseAuth;
 import java.util.ArrayList;
 import java.util.List;
 
+import xyz.nokt.btf.foodadvisor.AddRestaurant.OnFragmentInteractionListener;
+
 public class MainActivity extends AppCompatActivity
-        implements NavigationView.OnNavigationItemSelectedListener, ViewRestaurants.OnFragmentInteractionListener, BlankFragment.OnFragmentInteractionListener, Settings.OnFragmentInteractionListener{
+        implements NavigationView.OnNavigationItemSelectedListener, ViewRestaurants.OnFragmentInteractionListener, BlankFragment.OnFragmentInteractionListener, Settings.OnFragmentInteractionListener, AddRestaurant.OnFragmentInteractionListener{
 
     List<RestaurantObj> restaurantObjs;
     private RestaurantListAdapter restaurantListAdapter;
@@ -112,12 +114,13 @@ public class MainActivity extends AppCompatActivity
             ft = getSupportFragmentManager().beginTransaction();
             ft.replace(R.id.frag_main, new AutoRecommendedRestaurant());
             ft.commit();
-        }else if(id == R.id.op_settings)
+        }*/else if(id == R.id.op_add_rest)
         {
             ft = getSupportFragmentManager().beginTransaction();
-            ft.replace(R.id.frag_main, new Settings());
+            ft.replace(R.id.frag_main, new AddRestaurant());
+            ft.addToBackStack(null);
             ft.commit();
-        }*/
+        }
         else if (id == R.id.signOut) {
             fbAuth.signOut();
             startActivity(new Intent(MainActivity.this, Login.class));

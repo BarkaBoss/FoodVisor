@@ -23,7 +23,7 @@ public class BlankFragment extends Fragment {
     }
     TextView tvMessage;
     Button btnYes, btnNo, btnNorthern, btnYoruba, btnIgbo, btnVegan, btnHalal, btnGluten, btnDiab,
-            btnChinese, btnIndian, btnLebanese, btnContinental;
+            btnChinese, btnIndian, btnLebanese, btnContinental, btnfastFood;
     LinearLayout linearLayout, lineMain, lineDiet, linefore;
 
     @Override
@@ -57,6 +57,7 @@ public class BlankFragment extends Fragment {
         btnIndian = rootView.findViewById(R.id.indian);
         btnLebanese = rootView.findViewById(R.id.lebanese);
         btnContinental = rootView.findViewById(R.id.continental);
+        btnfastFood = rootView.findViewById(R.id.fastfoof);
 
         linearLayout = rootView.findViewById(R.id.local);
         lineMain = rootView.findViewById(R.id.linMain);
@@ -96,6 +97,7 @@ public class BlankFragment extends Fragment {
 
         if(linearLayout.getVisibility() != View.GONE || linearLayout.getVisibility() != View.INVISIBLE)
         {
+            tvMessage.setText("Which is your preference?");
             btnNorthern.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
@@ -134,10 +136,23 @@ public class BlankFragment extends Fragment {
                             .commit();
                 }
             });
+            btnIgbo.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    bundle.putString("localForeign", "fast");
+                    android.support.v4.app.FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
+                    android.support.v4.app.FragmentTransaction ft = fragmentManager.beginTransaction();
+                    AutoRecommendedRestaurant autoRec = new AutoRecommendedRestaurant();
+                    autoRec.setArguments(bundle);
+                    ft.replace(R.id.frag_main, autoRec).addToBackStack(null)
+                            .commit();
+                }
+            });
         }
 
         if(lineDiet.getVisibility() != View.GONE || lineDiet.getVisibility() != View.INVISIBLE)
         {
+            tvMessage.setText("Which is your preference?");
             btnVegan.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
@@ -189,6 +204,7 @@ public class BlankFragment extends Fragment {
         }
         if(linefore.getVisibility() != View.GONE || linefore.getVisibility() != View.INVISIBLE)
         {
+            tvMessage.setText("Which is your preference?");
             btnChinese.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
@@ -250,6 +266,7 @@ public class BlankFragment extends Fragment {
             public void onClick(View view) {
                 lineMain.setVisibility(View.GONE);
                 lineDiet.setVisibility(View.VISIBLE);
+                tvMessage.setText("Which is your preference?");
                 }
         });
 
@@ -274,6 +291,7 @@ public class BlankFragment extends Fragment {
             public void onClick(View view) {
                 lineMain.setVisibility(View.GONE);
                 linefore.setVisibility(View.VISIBLE);
+                tvMessage.setText("Which is your preference?");
             }
         });
 
@@ -282,6 +300,7 @@ public class BlankFragment extends Fragment {
             public void onClick(View view) {
                 lineMain.setVisibility(View.GONE);
                 linearLayout.setVisibility(View.VISIBLE);
+                tvMessage.setText("Which is your preference?");
             }
         });
     }
@@ -308,7 +327,7 @@ public class BlankFragment extends Fragment {
     public void onResume() {
         super.onResume();
 
-        getActivity().setTitle("Food Advisor");
+        getActivity().setTitle("Restaurant Advisor");
         if (lineMain.getVisibility() == View.GONE) {
             linearLayout.setVisibility(View.GONE);
             lineMain.setVisibility(View.VISIBLE);

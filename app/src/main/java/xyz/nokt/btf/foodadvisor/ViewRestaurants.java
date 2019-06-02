@@ -97,7 +97,7 @@ public class ViewRestaurants extends Fragment implements SearchView.OnQueryTextL
         LayoutInflater inflater = getLayoutInflater();
         final View dialogView = inflater.inflate(R.layout.dialog_nav, null);
         dialogBuilder.setView(dialogView);
-        dialogBuilder.setTitle("Food Adivsor");
+        dialogBuilder.setTitle("Restaurant Adivsor");
         final AlertDialog ab = dialogBuilder.create();
 
         final TextView tvMessage = dialogView.findViewById(R.id.tvDiagMessage);
@@ -306,7 +306,7 @@ public class ViewRestaurants extends Fragment implements SearchView.OnQueryTextL
     @Override
     public void onResume() {
         super.onResume();
-        getActivity().setTitle("List of Restaurants");
+        getActivity().setTitle("Restaurants");
     }
 
     @Override

@@ -87,7 +87,7 @@ public class ViewRestaurants extends Fragment implements SearchView.OnQueryTextL
         // we then load the restaurants via the loadRests() method
         loadRests();
         setHasOptionsMenu(true);
-        loadDialog();
+        //loadDialog();
         return rootView;
     }
 

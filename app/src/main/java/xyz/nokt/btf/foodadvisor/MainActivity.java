@@ -23,7 +23,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class MainActivity extends AppCompatActivity
-        implements NavigationView.OnNavigationItemSelectedListener, ViewRestaurants.OnFragmentInteractionListener, Settings.OnFragmentInteractionListener{
+        implements NavigationView.OnNavigationItemSelectedListener, ViewRestaurants.OnFragmentInteractionListener, BlankFragment.OnFragmentInteractionListener, Settings.OnFragmentInteractionListener{
 
     List<RestaurantObj> restaurantObjs;
     private RestaurantListAdapter restaurantListAdapter;
@@ -46,7 +46,8 @@ public class MainActivity extends AppCompatActivity
             }
         });*/
         ft = getSupportFragmentManager().beginTransaction();
-        ft.replace(R.id.frag_main, new ViewRestaurants());
+        ft.replace(R.id.frag_main, new BlankFragment());
+        //ft.addToBackStack(null);
         ft.commit();
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
@@ -67,6 +68,19 @@ public class MainActivity extends AppCompatActivity
         } else {
             super.onBackPressed();
         }
+
+        /*if(getFragmentManager().getBackStackEntryCount() >1)
+        {
+            getFragmentManager().popBackStack();
+        }
+        else
+        {
+            super.onBackPressed();
+        }*/
+        ft = getSupportFragmentManager().beginTransaction();
+        ft.replace(R.id.frag_main, new BlankFragment());
+        //ft.addToBackStack(null);
+        ft.commit();
     }
 
     @Override

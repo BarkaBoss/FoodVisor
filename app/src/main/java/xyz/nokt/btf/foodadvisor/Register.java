@@ -25,7 +25,8 @@ import com.google.firebase.database.ValueEventListener;
 public class Register extends AppCompatActivity {
 
     //Declare UI elements
-    EditText edEmail, edPassword, edPhone, edFirstName, edLastName, edCusDiet;
+    EditText edEmail, edPassword, edPhone, edFirstName, edLastName;
+    //EditText edCusDiet;
     Button btnSignUp;
 
     //Declare string data for login data to be passed to next activity
@@ -63,7 +64,7 @@ public class Register extends AppCompatActivity {
         edPhone = findViewById(R.id.edPhoneNumber);
         edFirstName = findViewById(R.id.edFirstName);
         edLastName = findViewById(R.id.edLastName);
-        edCusDiet = findViewById(R.id.cusDiet);
+        //edCusDiet = findViewById(R.id.cusDiet);
 
         pgRBar = findViewById(R.id.regProgressBar);
         pgRBar.setVisibility(View.GONE);
@@ -149,7 +150,7 @@ public class Register extends AppCompatActivity {
         final String strPhone = edPhone.getText().toString().trim();
         final String strFirstName = edFirstName.getText().toString().trim();
         final String strLastName = edLastName.getText().toString().trim();
-        final String dietNeeds = edCusDiet.getText().toString().trim();
+        final String dietNeeds = "none";
         final String strRole = "customer";
 
         //Start check
@@ -166,11 +167,11 @@ public class Register extends AppCompatActivity {
             return;
         }
 
-        if (dietNeeds.isEmpty()) {
+        /*if (dietNeeds.isEmpty()) {
             edCusDiet.setError("Enter your Dietary Needs");
             edCusDiet.requestFocus();
             return;
-        }
+        }*/
 
         if (strEmail.isEmpty()) {
             edEmail.setError("Enter your email address");

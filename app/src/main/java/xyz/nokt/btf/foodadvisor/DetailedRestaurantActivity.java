@@ -71,7 +71,7 @@ public class DetailedRestaurantActivity extends FragmentActivity implements OnMa
     FirebaseDatabase fbDatabase = FirebaseDatabase.getInstance();
     DatabaseReference dbRef = fbDatabase.getReference("comments");
 
-    String address, restID;
+    String address, restID, strRestName;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -100,6 +100,7 @@ public class DetailedRestaurantActivity extends FragmentActivity implements OnMa
 
 
         address = getIntent().getStringExtra("restAddress");
+        strRestName = getIntent().getStringExtra("restName");
 
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -185,16 +186,19 @@ public class DetailedRestaurantActivity extends FragmentActivity implements OnMa
             mMap.setOnMyLocationChangeListener(new GoogleMap.OnMyLocationChangeListener() {
                 @Override
                 public void onMyLocationChange(Location location) {
-                    mMap.addMarker(new MarkerOptions().position(new LatLng(location.getLatitude(), location.getLatitude()))
-                            .title("You"));
+                    //mMap.addMarker(new MarkerOptions().position(new LatLng(location.getLatitude(), location.getLatitude()))
+                    //        .title("You"));
                     userLoc = new LatLng(location.getLatitude(), location.getLongitude());
                     mMap.moveCamera(CameraUpdateFactory.newLatLng(userLoc));
+
+
 
                     //Plot Route Code
 
                     List<LatLng> path = new ArrayList();
                     restLoc = getLatLongFromAdd(getBaseContext(), address);
-
+                    mMap.addMarker(new MarkerOptions().position(restLoc)
+                            .title(strRestName));
                     //userLoc = new LatLng(8.9576992, 7.7007401);
 
 

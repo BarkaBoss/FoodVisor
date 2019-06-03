@@ -136,7 +136,7 @@ public class BlankFragment extends Fragment {
                             .commit();
                 }
             });
-            btnIgbo.setOnClickListener(new View.OnClickListener() {
+            btnfastFood.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
                     bundle.putString("localForeign", "fast");

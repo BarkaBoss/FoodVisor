@@ -136,18 +136,6 @@ public class BlankFragment extends Fragment {
                             .commit();
                 }
             });
-            btnfastFood.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    bundle.putString("localForeign", "fast");
-                    android.support.v4.app.FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
-                    android.support.v4.app.FragmentTransaction ft = fragmentManager.beginTransaction();
-                    AutoRecommendedRestaurant autoRec = new AutoRecommendedRestaurant();
-                    autoRec.setArguments(bundle);
-                    ft.replace(R.id.frag_main, autoRec).addToBackStack(null)
-                            .commit();
-                }
-            });
         }
 
         if(lineDiet.getVisibility() != View.GONE || lineDiet.getVisibility() != View.INVISIBLE)
@@ -245,6 +233,18 @@ public class BlankFragment extends Fragment {
                 @Override
                 public void onClick(View view) {
                     bundle.putString("localForeign", "indian");
+                    android.support.v4.app.FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
+                    android.support.v4.app.FragmentTransaction ft = fragmentManager.beginTransaction();
+                    AutoRecommendedRestaurant autoRec = new AutoRecommendedRestaurant();
+                    autoRec.setArguments(bundle);
+                    ft.replace(R.id.frag_main, autoRec).addToBackStack(null)
+                            .commit();
+                }
+            });
+            btnfastFood.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    bundle.putString("localForeign", "fast");
                     android.support.v4.app.FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
                     android.support.v4.app.FragmentTransaction ft = fragmentManager.beginTransaction();
                     AutoRecommendedRestaurant autoRec = new AutoRecommendedRestaurant();

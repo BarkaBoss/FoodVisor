@@ -60,7 +60,7 @@ public class AddRestaurant extends Fragment{
     String strRestName, strEmail, strPhone, strAddress, strImgUrl, strImgUrlX, strFeatures, locUri, locUriX, locCont, sitInOut;
 
     FirebaseDatabase fireDB = FirebaseDatabase.getInstance();
-    DatabaseReference dbRef = fireDB.getReference("Restaurants");
+    DatabaseReference dbRef = fireDB.getReference("Restaurants_Queue");
 
     FirebaseStorage fireStore = FirebaseStorage.getInstance();
     StorageReference storeRef = fireStore.getReference("restaurants"+dateFormatWithTime.format(date));
@@ -228,11 +228,8 @@ public class AddRestaurant extends Fragment{
         edFeatures.setText("");
 
         Toast.makeText(getContext(), "New Restaurant Uploaded", Toast.LENGTH_LONG).show();
-        /*Snackbar yummy = Snackbar.make(constraintLayout, "", Snackbar.LENGTH_LONG);
-        yummy.show();*/
     }
 
-    // TODO: Rename method, update argument and hook method into UI event
     public void onButtonPressed(Uri uri) {
         if (mListener != null) {
             mListener.onFragmentInteraction(uri);

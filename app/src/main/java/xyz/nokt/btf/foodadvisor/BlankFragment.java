@@ -69,7 +69,7 @@ public class BlankFragment extends Fragment {
             lineMain.setVisibility(View.VISIBLE);
             lineDiet.setVisibility(View.GONE);
             linefore.setVisibility(View.GONE);
-            getActivity().setTitle("Food.Advisor");
+            getActivity().setTitle("Restaurant Advisor");
             Log.i("Resumed", "Resumes");
         }
         Log.i("Resumed", "Resumes");
@@ -97,7 +97,7 @@ public class BlankFragment extends Fragment {
 
         if(linearLayout.getVisibility() != View.GONE || linearLayout.getVisibility() != View.INVISIBLE)
         {
-            tvMessage.setText("Which is your preference?");
+            //tvMessage.setText("Which is your preference?");
             btnNorthern.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
@@ -152,7 +152,7 @@ public class BlankFragment extends Fragment {
 
         if(lineDiet.getVisibility() != View.GONE || lineDiet.getVisibility() != View.INVISIBLE)
         {
-            tvMessage.setText("Which is your preference?");
+            //tvMessage.setText("Which is your preference?");
             btnVegan.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
@@ -204,7 +204,7 @@ public class BlankFragment extends Fragment {
         }
         if(linefore.getVisibility() != View.GONE || linefore.getVisibility() != View.INVISIBLE)
         {
-            tvMessage.setText("Which is your preference?");
+            //tvMessage.setText("Which is your preference?");
             btnChinese.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {

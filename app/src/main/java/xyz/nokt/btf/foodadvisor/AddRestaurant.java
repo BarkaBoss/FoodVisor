@@ -48,7 +48,8 @@ public class AddRestaurant extends Fragment{
     Date date = new Date();
 
     EditText edRestName, edRestMail, edRestPhone, edRestAddress, edFeatures;
-    Spinner localConti, sitinOut;
+    Spinner localConti;
+    //sitinOut;
     ImageView imgBanner;
     Button btnAddRest;
     TextView imgAddCam, tvCACert;
@@ -98,7 +99,7 @@ public class AddRestaurant extends Fragment{
         edFeatures = rootView.findViewById(R.id.edRestFeatures);
 
         localConti = rootView.findViewById(R.id.spRestLocCont);
-        sitinOut = rootView.findViewById(R.id.spRestSitinOut);
+        //sitinOut = rootView.findViewById(R.id.spRestSitinOut);
 
         imgAddCam = rootView.findViewById(R.id.imgAddCam);
         tvCACert = rootView.findViewById(R.id.addCACert);
@@ -205,7 +206,7 @@ public class AddRestaurant extends Fragment{
         strAddress = edRestAddress.getText().toString().trim();
         strFeatures = edFeatures.getText().toString().trim();
         locCont = localConti.getSelectedItem().toString().trim();
-        sitInOut = sitinOut.getSelectedItem().toString().trim();
+        //sitInOut = sitinOut.getSelectedItem().toString().trim();
 
         String id = dbRef.push().getKey();
         RestaurantObj restaurantObj = new RestaurantObj( strRestName,
@@ -216,7 +217,7 @@ public class AddRestaurant extends Fragment{
                 strImgUrl,
                 strFeatures,
                 locCont,
-                sitInOut,
+                "sit in",
                 strImgUrlX);
 
         dbRef.child(id).setValue(restaurantObj);
